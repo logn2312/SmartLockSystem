@@ -7,10 +7,6 @@ from PIL import Image
 
 st.set_page_config(page_title="Homepage",layout="wide")
 
-# Add a sidebar
-st.sidebar.title('Navigation')
-# Create links in the sidebar
-
 def set_bg_hack(main_bg):
     '''
     A function to unpack an image from root folder and set as bg.
@@ -109,13 +105,19 @@ with st.container():
         col3, col4, _ = st.columns([1,3,1])
         with col3:
             st.image(image1, width = 110)
+        st.title("Smart Lock System")
+        st_lottie(load_coding, width = 350, height = 200,key="coding")
+        st.header("Welcome to my app :heart:")
+        if about_us:
+            st.header('About Us')
+            st.info('This Smart Lock System Based System is designed by International University!')
+        elif contact:
+            st.header('Contact Us')
+            st.info('If you find you need any help contact me on pdtdh@hcmiu.edu.vn!')
         with col4:
             st.text("")
             st.write("VIETNAM NATIONAL UNIVERSITY HCMC")
             st.write("**INTERNATIONAL UNIVERSITY**")
-            st.title("Smart Lock System")
-            st.text("")
-            st_lottie(load_coding, width = 300, height = 200,key="coding")
             # Add the main content
             if home:
                 switch_page("Homepage")
@@ -123,9 +125,3 @@ with st.container():
                 switch_page("Admin")
             elif user:
                 switch_page("User")
-            elif about_us:
-                st.header('About Us')
-                st.info('This Smart Lock System Based System is designed by International University!')
-            elif contact:
-                st.header('Contact Us')
-                st.info('If you find you need any help contact me on pdtdh@hcmiu.edu.vn!')
