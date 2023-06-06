@@ -8,3 +8,4 @@ numpy==1.23.5
 paho-mqtt==1.6.1
 streamlit_option_menu
 gspread==5.7.2
+oauth2client.service_account
