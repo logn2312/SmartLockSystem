@@ -112,36 +112,31 @@ def load_lottieurl(url):
 load_coding = load_lottieurl("https://assets7.lottiefiles.com/packages/lf20_6e0qqtpa.json")
 
 def upload_file_to_google_sheet(file_path, spreadsheet_id, sheet_name):
-    # Đọc thông tin xác thực từ file JSON
+    # Read credentials file JSON
     credentials = ServiceAccountCredentials.from_json_keyfile_name("credentials.json", ["https://www.googleapis.com/auth/spreadsheets"])
 
-    # Tạo kết nối đến Google Sheets API
+    # Create connection to Google Sheets API
     client = gspread.authorize(credentials)
 
-    # Mở spreadsheet
+    # Open spreadsheet
     spreadsheet = client.open_by_key(spreadsheet_id)
 
-    # Lấy sheet theo tên
+    # Get sheet by sheet name
     sheet = spreadsheet.worksheet(sheet_name)
 
-    # Đọc dữ liệu từ file và ghi vào sheet
+    # Read data from file and write it
     with open(file_path, "r") as file:
         data = pd.read_csv(file)
 
-    # Tạo danh sách dữ liệu từ tệp
+    # Create list from file
     values = data.values.tolist()
     
-    # Gửi dữ liệu lên sheet
+    # Write data to sheet
     sheet.insert_rows(values)
 
 def automail():
     recipient = "ITITIU19026@student.hcmiu.edu.vn"
     date = datetime.date.today().strftime("%B %d, %Y")
-    # path = 'Attendance'
-    # os.chdir(path)
-    # files = sorted(os.listdir(os.getcwd()), key=os.path.getmtime)
-    # newest = files[-1]
-    # filename = newest
     sub = "Attendance Report for " + str(date)
     yag = yagmail.SMTP(unm, psw)
     yag.send(
@@ -203,21 +198,6 @@ with st.container():
                 publish.single(TOPIC1, "Lock", hostname=BROKER, port=PORT)
                 placeholder1.error('Lock!', icon="🚨")
 
-                
-                    
-            # with room2:
-            #     with st.container():
-            #         st.write('**Room 2**')
-            #         placeholder2 = st.empty()
-            #         remote_control2 = st.selectbox("**Remote Control Room 2**", ('','Unlock✅','Lock🚨'))
-
-            #         if remote_control2 == 'Unlock✅':
-            #             publish.single(TOPIC2, "Unlock", hostname=BROKER, port=PORT)
-            #         elif remote_control2 == 'Lock🚨':
-            #             publish.single(TOPIC2, "Lock", hostname=BROKER, port=PORT)
-            #placeholder1.warning("")
-            #placeholder2.warning("")
-
             def on_message(client, userdata, message):
                 msg = message.payload.decode()
                 if msg == 'Unlock':
@@ -229,16 +209,7 @@ with st.container():
                 #publish.single(TOPIC1, led_state, hostname=BROKER, port=PORT)
         placeholder3 = st.empty()
         placeholder4 = st.empty()
-        # with st.container():
-        #     func1,func2,func3,func4= st.columns(4)
-        #     with func1:
-        #         upload = st.button('Upload')
-        #     with func2:
-        #         email = st.button('Email')
-        #     with func3:
-        #         history = st.button('History')
-        #     with func4:
-        #         stat = st.button('Statistics') 
+        
         selected = option_menu(
             menu_title=None,  # required
             options=["Upload", "Email", "History"],#, "Statistics"],  # required
@@ -266,7 +237,7 @@ with st.container():
             placeholder3.dataframe(df)
         # elif selected == 'Statistics':
         #     placeholder3.line_chart({"data": [1, 5, 2, 6]})
-        # Upload file lên Google Sheets
+        # Upload file to Google Sheets
         elif selected == 'Upload':
             uploaded_file = placeholder3.file_uploader("Chọn file để tải lên")
 
