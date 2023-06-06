@@ -7,3 +7,4 @@ matplotlib==3.7.1
 numpy==1.23.5
 paho-mqtt==1.6.1
 streamlit_option_menu
+gspread==5.7.2
