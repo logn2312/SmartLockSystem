@@ -12,9 +12,7 @@ import os
 import pandas as pd
 import paho.mqtt.publish as publish
 import paho.mqtt.client as mqtt
-from mtcnn import MTCNN
 import time
-import facenet
 
 # set MQTT Broker
 BROKER = 'broker.hivemq.com'
