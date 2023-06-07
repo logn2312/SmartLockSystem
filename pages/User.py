@@ -125,16 +125,6 @@ with st.container():
                 st.text("")
                 contact = st.button('**Contact Us**')
         with st.container():
-            df1 = pd.read_csv("Attendance.csv")
-            df2 = pd.read_csv("Schedule.csv")
-
-            Id_list = df1['Id'].tolist()
-            Id = Id_list[0]
-            for (index, row) in df2.iterrows():
-                if (row['Id'] != Id): #Id input từ bàn phím
-                    df2 = df2.drop(index)
-
-            room = df2['Room'].tolist()
             with st.container():
                 st.write('**Room Status**')
                 placeholder1 = st.empty()
