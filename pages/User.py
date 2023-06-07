@@ -10,7 +10,6 @@ from oauth2client.service_account import ServiceAccountCredentials
 import csv
 import os
 import pandas as pd
-import cv2
 import paho.mqtt.publish as publish
 import paho.mqtt.client as mqtt
 from mtcnn import MTCNN
