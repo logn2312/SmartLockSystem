@@ -141,6 +141,21 @@ def automail():
     date = datetime.date.today().strftime("%B %d, %Y")
     sub = "Attendance Report for " + str(date)
     yag = yagmail.SMTP(unm, psw)
+    # Read credentials file JSON
+    credentials = ServiceAccountCredentials.from_json_keyfile_name("credentials.json", ["https://www.googleapis.com/auth/spreadsheets"])
+
+    # Create connection to Google Sheets API
+    client = gspread.authorize(credentials)
+
+    # Open spreadsheet
+    spreadsheet = client.open_by_key('1OKvDa6AZxG7RcJzblfAAFlyNZxNqAyyZyRgXRKlAJE8')
+
+    # Get sheet by sheet name
+    sheet = spreadsheet.worksheet('Sheet1')
+    
+    df2 = pd.DataFrame(data=sheet.get_all_records())
+    df2.to_csv("Attendance.csv", index=False)
+    
     yag.send(
         to=recipient, #recipient email ID
         subject=sub, # email subject
