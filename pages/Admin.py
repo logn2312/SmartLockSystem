@@ -123,7 +123,9 @@ def upload_file_to_google_sheet(file_path, spreadsheet_id, sheet_name):
 
     # Get sheet by sheet name
     sheet = spreadsheet.worksheet(sheet_name)
-
+    
+    sheet.clear()
+    
     # Read data from file and write it
     with open(file_path, "r") as file:
         data = pd.read_csv(file)
