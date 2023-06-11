@@ -210,7 +210,7 @@ with st.container():
                 led_state = 'ON'
                 publish.single(TOPIC1, "Unlock", hostname=BROKER, port=PORT)
                 placeholder1.success('Unlock!', icon="✅")
-            elif remote_control1 == 'Lock🚨':
+            elif remote_control1 == 'Lock🚨' or remote_control1 == '':
                 led_state = 'OFF'
                 publish.single(TOPIC1, "Lock", hostname=BROKER, port=PORT)
                 placeholder1.error('Lock!', icon="🚨")
