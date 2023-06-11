@@ -250,6 +250,19 @@ with st.container():
             automail()
             placeholder3.success('Email Successfully Sent✅')
         elif selected == 'History':
+            # Get Schedule from Google Sheets
+            credentials = ServiceAccountCredentials.from_json_keyfile_name("credentials.json", ["https://www.googleapis.com/auth/spreadsheets"])
+
+            # Get connection to Google Sheets API
+            client = gspread.authorize(credentials)
+
+            # Open spreadsheet
+            spreadsheet = client.open_by_key('1OKvDa6AZxG7RcJzblfAAFlyNZxNqAyyZyRgXRKlAJE8')
+
+            # Get sheet by sheet name
+            sheet = spreadsheet.worksheet('Sheet1')
+            df = pd.DataFrame(data=sheet.get_all_records())
+            df.to_csv('Attendance.csv', index= False)
             df = pd.read_csv("Attendance.csv")
             placeholder3.dataframe(df)
         # elif selected == 'Statistics':
