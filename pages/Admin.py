@@ -131,7 +131,7 @@ def upload_file_to_google_sheet(file_path, spreadsheet_id, sheet_name):
         data = pd.read_csv(file)
 
     # Create list from file
-    values = data.values.tolist()
+    values = [data.columns.values.tolist()] + data.values.tolist()
     
     # Write data to sheet
     sheet.insert_rows(values)
