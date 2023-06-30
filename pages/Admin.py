@@ -246,10 +246,10 @@ with st.container():
             }
         )
         
-        if selected == 'Email':
+        if selected == 'Send Email':
             automail()
             placeholder3.success('Email Successfully Sent✅')
-        elif selected == 'History':
+        elif selected == 'Track History':
             # Get Schedule from Google Sheets
             credentials = ServiceAccountCredentials.from_json_keyfile_name("credentials.json", ["https://www.googleapis.com/auth/spreadsheets"])
 
@@ -268,7 +268,7 @@ with st.container():
         # elif selected == 'Statistics':
         #     placeholder3.line_chart({"data": [1, 5, 2, 6]})
         # Upload file to Google Sheets
-        elif selected == 'Upload':
+        elif selected == 'Upload Schedule':
             uploaded_file = placeholder3.file_uploader("Choose file to upload")
 
             if uploaded_file is not None:
