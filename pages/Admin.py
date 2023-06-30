@@ -205,7 +205,7 @@ with st.container():
                 #with st.container():
             st.write('**Room Status**')
             placeholder1 = st.empty()
-            remote_control1 = st.selectbox("**Remote Control Room Door Lock**", ('','Unlock✅','Lock🚨'))
+            remote_control1 = st.selectbox("**Remote Control Classroom Door**", ('','Unlock✅','Lock🚨'))
             if remote_control1 == 'Unlock✅':
                 led_state = 'ON'
                 publish.single(TOPIC1, "Unlock", hostname=BROKER, port=PORT)
@@ -229,7 +229,7 @@ with st.container():
         
         selected = option_menu(
             menu_title=None,  # required
-            options=["Upload", "Email", "History"],#, "Statistics"],  # required
+            options=["Upload Schedule", "Send Email", "Track History"],#, "Statistics"],  # required
             icons=["upload", "envelope", "clock-history"],# "activity"],  # optional
             menu_icon="cast",  # optional
             default_index=0,  # optional
@@ -269,7 +269,7 @@ with st.container():
         #     placeholder3.line_chart({"data": [1, 5, 2, 6]})
         # Upload file to Google Sheets
         elif selected == 'Upload':
-            uploaded_file = placeholder3.file_uploader("Chọn file để tải lên")
+            uploaded_file = placeholder3.file_uploader("Choose file to upload")
 
             if uploaded_file is not None:
                 # Read CSV file into a Pandas DataFrame
